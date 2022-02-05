@@ -1,4 +1,4 @@
-import csv
+#import csv
 
 # item1 = 'Phone'
 # item1_price = 100
@@ -8,72 +8,7 @@ import csv
 # print(type(item1))
 
 
-class Item:
-    pay_rate = 0.8  # the pay rate after20% discount
-    all = []  # Creating a list of all objects, each objects represents and instance
 
-    def __init__(self, name: str, price: float, quantity: 0):
-        # Run validation on argument received
-        #assert price >=0, f"Price {price} is not greater than or equal to zero"
-        # **** File "/home/sirus/Desktop/Python/oop/ooop.py", line 16, in __init_
-        #assert price >=0, f"Price {price} is not greater than or equal to zero"
-        # TypeError: '>=' not supported between instances of 'NoneType' and 'int
-        # Above error is same error type for quantity _
-        #assert quantity >= 0, f"Quantity {quantity} is not greater  than or equal zero!"
-
-        # Assign to self object
-        self.price = price
-        self.quantity = quantity
-        self.name = name
-
-        # Action to excute
-        Item.all.append(self)
-        # print(f"{name} object created ")
-    # def calculate_total_price(self, x, y):
-    #     return x * y
-
-    def calculate_total_price(self):
-        return self.price * self.quantity
-
-    def apply_discount(self):
-        self.price = self.price * self.pay_rate  # changed class attribute with self
-
-    # @classmethod
-    # def instantiate_from_csv(cls):
-    #     with open('items.csv', 'r') as f:
-    #         reader = csv.DictReader(f)
-    #         items = list(reader)
-
-    #     for item in items:
-    #         print(item)
-    #         Item(
-    #             name=item.get('name'),
-    #             price=item.get('price'),
-    #             quantity=item.get('quantity'),
-    #         )
-            # Item(
-            #     name=item.get('name'),
-            #     price=float(item.get('price')),
-            #     quantity=int(item.get('quantity')),
-            # )
-    # represent all data object/instance in the list in a readable manner
-    # @staticmethod
-    # def is_integer(num): # static class is more regular function than a class function, it doesn't take self as 1st argument
-    #     # count out the floats that are point zero
-    #     # for i.e 5.0, 10.0
-    #     if isinstance(num, float):
-    #         # count out the floats that are point zero
-    #         return num.is_integer()
-    
-    #     elif isinstance(num, int):
-    #         return True
-    #     else:
-    #         return False
-        
-    
-    def __repr__(self):
-        # Accesing name of the class from the instance: to differentiate Items instance from Phone Instance
-        return f"{self.__class__.__name__}('{self.name}', {self.price}, {self.quantity})"
 
 # item1 = Item("Phone", 100, 5)
 # item1.apply_discount()
@@ -125,31 +60,18 @@ class Item:
 
 
 ### 1:09:00
-class Phone(Item):
-    # all = []  ** remove class attribute from child class
-    def __init__(self, name: str, price: float, quantity: 0, broken=0):
-        # call to supper function to have access to all attributes/ method from parent class
-        super().__init__(
-            name, price, quantity   
-        )
-        # validation
-        assert broken >= 0, f"{broken}: Broken phones must be greater or equal to 0"
 
-        # Assign to self object
-        self.broken = broken
-        # Action to excute
-        # Phone.all.append(self)     remove all parent attribute 
 
-phone1 = Item('Iphone12', 500, 10)
+# phone1 = Item('Iphone12', 500, 10)
 # phone1.broken = 2
-phone2 = Phone('Huawei J12', 650, 14, 4) # same as Item class because it inherited funcs from it.
+# phone2 = Phone('Huawei J12', 650, 14, 4) # same as Item class because it inherited funcs from it.
 # phone2.broken = 3
-phone3 = Phone('Samsung pro', 1800, 6, 6)
-print(phone3.calculate_total_price())
+# phone3 = Phone('Samsung pro', 1800, 6, 6)
+# print(phone3.calculate_total_price())
 # phone3.broken = 0
 
-print(Item.all)
-print(Phone.all)
+# print(Item.all)
+# print(Phone.all)
 
 ## *** 01:30:00
 

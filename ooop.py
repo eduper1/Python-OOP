@@ -38,41 +38,42 @@ class Item:
     def apply_discount(self):
         self.price = self.price * self.pay_rate  # changed class attribute with self
 
-    @classmethod
-    def instantiate_from_csv(cls):
-        with open('items.csv', 'r') as f:
-            reader = csv.DictReader(f)
-            items = list(reader)
+    # @classmethod
+    # def instantiate_from_csv(cls):
+    #     with open('items.csv', 'r') as f:
+    #         reader = csv.DictReader(f)
+    #         items = list(reader)
 
-        for item in items:
-            print(item)
-            Item(
-                name=item.get('name'),
-                price=item.get('price'),
-                quantity=item.get('quantity'),
-            )
+    #     for item in items:
+    #         print(item)
+    #         Item(
+    #             name=item.get('name'),
+    #             price=item.get('price'),
+    #             quantity=item.get('quantity'),
+    #         )
             # Item(
             #     name=item.get('name'),
             #     price=float(item.get('price')),
             #     quantity=int(item.get('quantity')),
             # )
     # represent all data object/instance in the list in a readable manner
-    @staticmethod
-    def is_integer(num): # static class is more regular function than a class function, it doesn't take self as 1st argument
-        # count out the floats that are point zero
-        # for i.e 5.0, 10.0
-        if isinstance(num, float):
-            # count out the floats that are point zero
-            return num.is_integer()
+    # @staticmethod
+    # def is_integer(num): # static class is more regular function than a class function, it doesn't take self as 1st argument
+    #     # count out the floats that are point zero
+    #     # for i.e 5.0, 10.0
+    #     if isinstance(num, float):
+    #         # count out the floats that are point zero
+    #         return num.is_integer()
     
-        elif isinstance(num, int):
-            return True
-        else:
-            return False
+    #     elif isinstance(num, int):
+    #         return True
+    #     else:
+    #         return False
         
     
     def __repr__(self):
-        return f"Item('{self.name}', {self.price}, {self.quantity})"
+        # Accesing name of the class from the instance: to differentiate Items instance from Phone Instance
+        return f"{self.__class__.__name__}('{self.name}', {self.price}, {self.quantity})"
 
 # item1 = Item("Phone", 100, 5)
 # item1.apply_discount()
@@ -116,15 +117,41 @@ class Item:
 
 #Item.instantiate_from_csv()
 # print(Item.all)
-##****************** I GOT an ERROR SOLVE IT FIRST ##1:03
+##****************** I GOT an ERROR SOLVE IT FIRST ##1:03:00
 
 
 # Accessing static method
-print(Item.is_integer(8.8))
+# print(Item.is_integer(8.8))
 
 
-### 1: 09
+### 1:09:00
+class Phone(Item):
+    # all = []  ** remove class attribute from child class
+    def __init__(self, name: str, price: float, quantity: 0, broken=0):
+        # call to supper function to have access to all attributes/ method from parent class
+        super().__init__(
+            name, price, quantity   
+        )
+        # validation
+        assert broken >= 0, f"{broken}: Broken phones must be greater or equal to 0"
 
+        # Assign to self object
+        self.broken = broken
+        # Action to excute
+        # Phone.all.append(self)     remove all parent attribute 
+
+phone1 = Item('Iphone12', 500, 10)
+# phone1.broken = 2
+phone2 = Phone('Huawei J12', 650, 14, 4) # same as Item class because it inherited funcs from it.
+# phone2.broken = 3
+phone3 = Phone('Samsung pro', 1800, 6, 6)
+print(phone3.calculate_total_price())
+# phone3.broken = 0
+
+print(Item.all)
+print(Phone.all)
+
+## *** 01:30:00
 
 
 

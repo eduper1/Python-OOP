@@ -16,13 +16,28 @@ class Item:
         # Assign to self object
         self.price = price
         self.quantity = quantity
-        self.name = name
+        self.__name = name
 
         # Action to excute
         Item.all.append(self)
         # print(f"{name} object created ")
     # def calculate_total_price(self, x, y):
     #     return x * y
+    @property
+    # property decorater = read-only Attribute
+    def name(self):
+        print("You are trying to access read-only attribute")
+        return self.__name
+    
+    @name.setter
+    # enable the read only attributes to definable again
+    def name(self, value):
+        print("You are trying to set new variable")
+        if len(value) > 10:
+            raise Exception ("Name is too long!")
+        else:
+            self.__name = value
+            
 
     def calculate_total_price(self):
         return self.price * self.quantity
@@ -49,19 +64,19 @@ class Item:
                 quantity=int(item.get('quantity')),
             )
     # represent all data object/instance in the list in a readable manner
-    # @staticmethod
-    # def is_integer(num): # static class is more regular function than a class function, it doesn't take self as 1st argument
-    #     # count out the floats that are point zero
-    #     # for i.e 5.0, 10.0
-    #     if isinstance(num, float):
-    #         # count out the floats that are point zero
-    #         return num.is_integer()
+    @staticmethod
+    def is_integer(num): # static class is more regular function than a class function, it doesn't take self as 1st argument
+        # count out the floats that are point zero
+        # for i.e 5.0, 10.0
+        if isinstance(num, float):
+            # count out the floats that are point zero
+            return num.is_integer()
     
-    #     elif isinstance(num, int):
-    #         return True
-    #     else:
-    #         return False
-        
+        elif isinstance(num, int):
+            return True
+        else:
+            return False
+    
     
     def __repr__(self):
         # Accesing name of the class from the instance: to differentiate Items instance from Phone Instance

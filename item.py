@@ -20,6 +20,9 @@ class Item:
 
         # Action to excute
         Item.all.append(self)
+
+    def new_method(self):
+        self.price
         # print(f"{name} object created ")
     # def calculate_total_price(self, x, y):
     #     return x * y
